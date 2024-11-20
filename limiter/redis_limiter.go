@@ -17,6 +17,7 @@ func NewRedisLimiter(addr string, ipRate, tokenRate int, banDuration time.Durati
 	client := redis.NewClient(&redis.Options{
 		Addr: addr,
 	})
+	client.FlushAll(context.Background())
 	return &RedisLimiter{client, ipRate, tokenRate, banDuration}
 }
 
